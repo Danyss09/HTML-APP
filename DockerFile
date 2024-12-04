@@ -1,8 +1,14 @@
-# Use the official CentOs Baseimage
-FROM centos:centos7
-# Install the Apache HTTP server package from the centos repository
-RUN yum install httpd -y
-#Copy the index.html file from the docker build contest to the default apache document root directory
-COPY index.html /var/www/html/
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-expose 80
+# Use the official Nginx image from the Docker Hub
+FROM nginx:alpine
+
+# Set the working directory
+WORKDIR /usr/share/nginx/html
+
+# Copy the HTML file into the Nginx directory
+COPY index.html .
+
+# Expose port 80 to the outside world
+EXPOSE 80
+
+# Command to run Nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
