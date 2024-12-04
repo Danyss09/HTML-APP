@@ -1,0 +1,8 @@
+# Use the official CentOs Baseimage
+FROM centos:centos7
+# Install the Apache HTTP server package from the centos repository
+RUN yum install httpd -y
+#Copy the index.html file from the docker build contest to the default apache document root directory
+COPY index.html /var/www/html/
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+expose 80
