@@ -1,14 +1,7 @@
-# Use the official Nginx image from the Docker Hub
 FROM nginx:alpine
 
-# Set the working directory
-WORKDIR /usr/share/nginx/html
-
-# Copy the HTML file into the Nginx directory
-COPY index.html .
+# Copy the HTML file into the container
+COPY index.html /usr/share/nginx/html/
 
 # Expose port 80 to the outside world
 EXPOSE 80
-
-# Command to run Nginx in foreground
-CMD ["nginx", "-g", "daemon off;"]
